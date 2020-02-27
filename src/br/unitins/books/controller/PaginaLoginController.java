@@ -8,21 +8,13 @@ import javax.inject.Named;
 public class PaginaLoginController {
 	private String login;
 	private String senha;
-	private String mensagem;
 	
 
 	public String entrar() {
-		System.out.println("Login: "+getLogin()+"\nSenha: "+getSenha()+"\nMensagem: "+getMensagem());
+		System.out.println("Login: "+getLogin()+"\nSenha: "+getSenha());
 		return "a";
 	}
 	
-	public String getMensagem() {
-		return mensagem;
-	}
-	
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
 	public String getLogin() {
 		return login;
 	}
