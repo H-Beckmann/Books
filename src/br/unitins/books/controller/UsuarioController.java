@@ -2,13 +2,14 @@ package br.unitins.books.controller;
 
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-
+import br.unitins.books.application.Util;
 import br.unitins.books.model.Usuario;
 
 @Named
@@ -22,13 +23,19 @@ public class UsuarioController implements Serializable {
 	
 
 	public void incluir() {
+		if(getUsuario().getNome().isBlank()) {
+			Util.addErrorMessage("O campo nome deve ser informado!");
+			return;
+		}
+		getUsuario().setId(proximoId());
 		getListaUsuario().add(getUsuario());
 		System.out.println("Nome: "+getUsuario().getNome());
 		limpar();
 	}
 	
 	public void alterar() {
-		setUsuario(usuario);
+		listaUsuario.set(listaUsuario.indexOf(getUsuario()), getUsuario());
+		limpar();
 	}
 	public void excluir() {
 		getListaUsuario().remove(getUsuario());
@@ -39,6 +46,15 @@ public class UsuarioController implements Serializable {
 	
 	public void editar(Usuario usu) {
 		setUsuario(usu.getClone());
+	}
+	
+	private int proximoId() {
+		int resultado=0;
+		for (Usuario usuario : listaUsuario) {
+			if(usuario.getId()>resultado)
+				resultado=usuario.getId();
+		}
+		return ++resultado;
 	}
 
 	public List<Usuario> getListaUsuario() {

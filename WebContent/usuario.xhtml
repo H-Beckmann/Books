@@ -11,8 +11,6 @@
 	<h1 style="margin-left:35%">.:Cadastro de Usário:.</h1>
 		<h:form style="width: 18%; margin-left:35%; border: 2px solid black;">
 			<h:panelGrid columns="2">
-					<h:outputLabel value="ID:"/>
-					<h:inputText value="#{usuarioController.usuario.id}"/>
 					<h:outputLabel value="Nome: "/>
 					<h:inputText value="#{usuarioController.usuario.nome}"/>
 					<h:outputLabel value="Login:"/>
@@ -22,9 +20,15 @@
 					<h:outputLabel value="E-mail:"/>
 					<h:inputText value="#{usuarioController.usuario.email}"/>
 			</h:panelGrid>
-				<h:commandButton value="Incluir" actionListener="#{usuarioController.incluir}"/>
-				<h:commandButton value="Alterar" actionListener="#{usuarioController.alterar}"/>
-				<h:commandButton value="Excluir" actionListener="#{usuarioController.excluir}"/>
+				<h:commandButton value="Incluir" 
+				disabled="#{usuarioController.usuario.id != null}"
+				actionListener="#{usuarioController.incluir}"/>
+				<h:commandButton value="Alterar" 
+				disabled="#{usuarioController.usuario.id == null}"
+				actionListener="#{usuarioController.alterar}"/>
+				<h:commandButton value="Excluir" 
+				disabled="#{usuarioController.usuario.id == null}"
+				actionListener="#{usuarioController.excluir}"/>
 				<h:commandButton value="Limpar" actionListener="#{usuarioController.limpar}"/>
 		</h:form>
 		<h:form style="width: 30%; margin-left:35%;">

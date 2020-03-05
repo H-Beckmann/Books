@@ -1,6 +1,6 @@
 package br.unitins.books.model;
 
-public class Usuario extends Entity{
+public class Usuario extends Entity<Usuario>{
 	
 	private String nome;
 	private String login;

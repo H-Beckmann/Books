@@ -1,6 +1,6 @@
 package br.unitins.books.model;
 
-public class Entity implements Cloneable{
+public class Entity<T> implements Cloneable{
 	
 	private Integer id;
 	
@@ -20,7 +20,7 @@ public class Entity implements Cloneable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Entity other = (Entity) obj;
+		Entity<T> other = (Entity<T>) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -29,9 +29,9 @@ public class Entity implements Cloneable{
 		return true;
 	}
 	
-	public Usuario getClone() {
+	public T getClone() {
 		try {
-			return (Usuario)super.clone();
+			return (T)super.clone();
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
