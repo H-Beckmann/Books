@@ -28,7 +28,7 @@ public class UsuarioController implements Serializable {
 	}
 	
 	public void alterar() {
-		
+		setUsuario(usuario);
 	}
 	public void excluir() {
 		getListaUsuario().remove(getUsuario());
@@ -38,7 +38,7 @@ public class UsuarioController implements Serializable {
 	}
 	
 	public void editar(Usuario usu) {
-		setUsuario(usu);
+		setUsuario(usu.getClone());
 	}
 
 	public List<Usuario> getListaUsuario() {
