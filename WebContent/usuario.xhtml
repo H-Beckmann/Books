@@ -20,11 +20,13 @@
 					<h:outputLabel value="Login:"/>
 					<h:inputText value="#{usuarioController.usuario.login}"/>
 					<h:outputLabel value="Senha:"/>
-					<h:inputSecret value="#{usuarioController.usuario.senha}"/>
+					<h:inputSecret value="#{usuarioController.usuario.senha}"
+					required="true" requiredMessage="A senha é necesséria!"/>
 					<h:outputLabel value="E-mail:"/>
 					<h:inputText value="#{usuarioController.usuario.email}"/>
 					<h:outputLabel value="Tipo de usuario: "/>
 					<h:selectOneMenu value="#{usuarioController.usuario.tipoUsuario}">
+						<f:selectItem itemLabel="Selecione um tipo:"/>
 						<f:selectItems value="#{usuarioController.listaTipoUsuario}"
 							var="tipo"
 							itemLabel="#{tipo.label}"/>
