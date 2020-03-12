@@ -10,6 +10,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.books.application.Util;
+import br.unitins.books.model.TipoUsuario;
 import br.unitins.books.model.Usuario;
 
 @Named
@@ -50,7 +51,7 @@ public class UsuarioController implements Serializable {
 	
 	private int proximoId() {
 		int resultado=0;
-		for (Usuario usuario : listaUsuario) {
+		for (Usuario usuario : getListaUsuario()) {
 			if(usuario.getId()>resultado)
 				resultado=usuario.getId();
 		}
@@ -73,4 +74,7 @@ public class UsuarioController implements Serializable {
 		this.usuario = usuario;
 	}
 	
+	public TipoUsuario[] getListaTipoUsuario() {
+		return TipoUsuario.values();
+	}
 }

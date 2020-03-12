@@ -9,16 +9,26 @@
 	<h:body style="background-color: lightgray;">
 	<h:messages style="color:red;margin:8px;" />
 	<h1 style="margin-left:35%">.:Cadastro de Usário:.</h1>
-		<h:form style="width: 18%; margin-left:35%; border: 2px solid black;">
+		<h:form style="width: 20%; margin-left:35%; border: 2px solid black;">
 			<h:panelGrid columns="2">
 					<h:outputLabel value="Nome: "/>
 					<h:inputText value="#{usuarioController.usuario.nome}"/>
+					<h:outputLabel value="Data de nascimento: "/>
+					<h:inputText value="#{usuarioController.usuario.dataNascimento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" type="localDate"/>
+					</h:inputText>					
 					<h:outputLabel value="Login:"/>
 					<h:inputText value="#{usuarioController.usuario.login}"/>
 					<h:outputLabel value="Senha:"/>
 					<h:inputSecret value="#{usuarioController.usuario.senha}"/>
 					<h:outputLabel value="E-mail:"/>
 					<h:inputText value="#{usuarioController.usuario.email}"/>
+					<h:outputLabel value="Tipo de usuario: "/>
+					<h:selectOneMenu value="#{usuarioController.usuario.tipoUsuario}">
+						<f:selectItems value="#{usuarioController.listaTipoUsuario}"
+							var="tipo"
+							itemLabel="#{tipo.label}"/>
+					</h:selectOneMenu>
 			</h:panelGrid>
 				<h:commandButton value="Incluir" 
 				disabled="#{usuarioController.usuario.id != null}"
@@ -42,6 +52,12 @@
 	     		 <h:outputLabel value="#{listaUsuario.nome}"/>
 	   		</h:column>
 	  		 <h:column>
+	     		 <f:facet name="header">Data de Nascimentp</f:facet>
+	     		 <h:outputLabel value="#{listaUsuario.dataNascimento}">
+	     		 	<f:convertDateTime pattern="dd-MM-yyyy" type="localDate"/>
+	     		 </h:outputLabel>
+	   		</h:column>
+	  		 <h:column>
 	      		<f:facet name="header">Login</f:facet>
 	     		 <h:outputLabel value="#{listaUsuario.login}"/>
 	   		</h:column>
@@ -52,6 +68,10 @@
 	   		<h:column>
 	      		<f:facet name="header">E-mail</f:facet>
 	     		 <h:outputLabel value="#{listaUsuario.email}"/>
+	   		</h:column>
+	   		<h:column>
+	      		<f:facet name="header">Tipo de usuario</f:facet>
+	     		 <h:outputLabel value="#{listaUsuario.tipoUsuario.label}"/>
 	   		</h:column>
 	   		<h:column>
 	      		<f:facet name="header">Ação</f:facet>
