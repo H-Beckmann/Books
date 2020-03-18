@@ -12,9 +12,9 @@
 		<h:form style="width: 20%; margin-left:35%; border: 2px solid black;">
 			<h:panelGrid columns="2">
 					<h:outputLabel value="Nome: "/>
-					<h:inputText value="#{usuarioController.usuario.nome}"/>
+					<h:inputText id="itnome" value="#{usuarioController.usuario.nome}"/>
 					<h:outputLabel value="Data de nascimento: "/>
-					<h:inputText value="#{usuarioController.usuario.dataNascimento}">
+					<h:inputText id="itdata" value="#{usuarioController.usuario.dataNascimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" type="localDate"/>
 					</h:inputText>					
 					<h:outputLabel value="Login:"/>
@@ -40,8 +40,12 @@
 				actionListener="#{usuarioController.alterar}"/>
 				<h:commandButton value="Excluir" 
 				disabled="#{usuarioController.usuario.id == null}"
-				actionListener="#{usuarioController.excluir}"/>
-				<h:commandButton value="Limpar" actionListener="#{usuarioController.limpar}"/>
+				actionListener="#{usuarioController.excluir}">
+					<f:ajax execute="@this" render="@form"/>
+				</h:commandButton>
+				<h:commandButton value="Limpar" actionListener="#{usuarioController.limpar}">
+					<f:ajax execute="@this" render="@form"/>
+				</h:commandButton>
 		</h:form>
 		<h:form style="width: 30%; margin-left:35%;">
 			<h:dataTable value="#{usuarioController.listaUsuario}" var="listaUsuario">
